@@ -1,1 +1,14 @@
-<p>task-list works!</p>
+<div class="roster-container">
+  <h2>Daily Duty Roster</h2>
+
+  <ul>
+    @for (duty of duties; track duty.id) {
+      <li>
+        <strong>{{ duty.title }}</strong> - Assigned to: {{ duty.assignee }}
+        @if (duty.completed) {
+          <span> ✅ (Done)</span>
+        }
+      </li>
+    }
+  </ul>
+</div>

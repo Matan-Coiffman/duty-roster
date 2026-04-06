@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, getDebugNode, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DutyService, Duty } from '../../services/duty';
 @Component({
   selector: 'app-task-list',
   imports: [CommonModule],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
-export class TaskListComponent {
-  duties = [
-    { id: 1, title: 'Main Gate Guard Duty', assignee: 'Cohen', completed: false },
-    { id: 2, title: 'Kitchen Cleanup', assignee: 'Levi', completed: false },
-    { id: 3, title: 'Dorm Inspection', assignee: 'Avraham', completed: true },
-  ];
+export class TaskListComponent implements OnInit {
+  private dutyService = inject(DutyService);
+  duties: Duty[] = [];
+
+  ngOnInit() {
+    this.duties = this.dutyService.getDuties();
+  }
 }
